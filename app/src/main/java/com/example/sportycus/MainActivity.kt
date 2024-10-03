@@ -2,6 +2,12 @@ package com.example.sportycus
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.sportycus.Fragment.CalendarioFragment
+import com.example.sportycus.Fragment.DesafiosFragment
+import com.example.sportycus.Fragment.InicioFragment
+import com.example.sportycus.Fragment.MasFragment
+import com.example.sportycus.Fragment.NoticiasFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -12,30 +18,28 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
+        // Cargar el fragmento inicial
+        loadFragment(InicioFragment())
+
         bottomNavigationView.setOnItemSelectedListener { item ->
+            var fragment: Fragment? = null
             when (item.itemId) {
-                R.id.nav_home -> {
-                    // Manejar la acción de "Inicio"
-                    true
-                }
-                R.id.nav_challenges -> {
-                    // Manejar la acción de "Desafíos"
-                    true
-                }
-                R.id.nav_calendar -> {
-                    // Manejar la acción de "Calendario"
-                    true
-                }
-                R.id.nav_news -> {
-                    // Manejar la acción de "Noticias"
-                    true
-                }
-                R.id.nav_more -> {
-                    // Manejar la acción de "Más"
-                    true
-                }
-                else -> false
+                R.id.nav_home -> fragment = InicioFragment()
+                R.id.nav_challenges -> fragment = DesafiosFragment()
+                R.id.nav_calendar -> fragment = CalendarioFragment()
+                R.id.nav_news -> fragment = NoticiasFragment()
+                R.id.nav_more -> fragment = MasFragment()
             }
+            if (fragment != null) {
+                loadFragment(fragment)
+            }
+            true
         }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }
