@@ -1,4 +1,4 @@
-package com.example.sportycus
+package com.example.sportycus.Activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import com.example.sportycus.Fragment.DesafiosFragment
 import com.example.sportycus.Fragment.InicioFragment
 import com.example.sportycus.Fragment.MasFragment
 import com.example.sportycus.Fragment.NoticiasFragment
+import com.example.sportycus.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
